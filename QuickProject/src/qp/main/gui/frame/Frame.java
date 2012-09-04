@@ -16,7 +16,8 @@ import qp.main.threads.PlayerMovement;
 
 public class Frame extends JFrame{
 	static Frame FRAME;
-	short WIDTH = 800, HEIGHT = 600;
+	static short WIDTH = 800;
+	static short HEIGHT = 600;
 	private static Image img;
 	private static Graphics dbimg;
 	static Random rand = new Random();
@@ -34,7 +35,7 @@ public class Frame extends JFrame{
 	public static void init(){
 		new Player(50,50,50,50);
 		for(int i = 0; i < 10; i++){
-			new Enemy(rand.nextInt(400) + 400, rand.nextInt(300) + 300, 50 , 50);
+			new Enemy(rand.nextInt(WIDTH/2) + WIDTH/2, rand.nextInt(HEIGHT/2) + HEIGHT/2, 50 , 50);
 		}
 		FRAME = new Frame();
 		new Thread(new PlayerMovement()).start();
@@ -64,7 +65,7 @@ public class Frame extends JFrame{
 		Enemy.enemies.clear();
 		new Player(50,50,50,50);
 		for(int i = 0; i < 10; i++){
-			new Enemy(rand.nextInt(400) + 400, rand.nextInt(300) + 300, 50 , 50);
+			new Enemy(rand.nextInt(WIDTH/2) + WIDTH/2, rand.nextInt(HEIGHT/2) + HEIGHT/2, 50 , 50);
 		}
 	}
 	public void paint(Graphics g){
