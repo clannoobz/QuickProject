@@ -33,6 +33,23 @@ public class Frame extends JFrame{
 	static Thread PROLAUNCHER = new Thread(new ProjectileLauncher());
 	static Thread PLAYERMOVEMENT = new Thread(new PlayerMovement());
 	static Thread FPSUPDATER = new Thread(new FPSUpdater());
+	static Thread FRAMELIMITER = new Thread(){
+		public void run(){
+			try{
+				byte interval = 15; 
+				long lastDraw=0;
+				while(true){
+					while(System.currentTimeMillis()-lastDraw<interval)
+						   Thread.sleep(1);
+						 
+						 lastDraw=System.currentTimeMillis();
+						 FRAME.repaint();
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	};
 	static JPanel panel = new JPanel();
 	String TITLE = "Woo! Random!";
 	public Frame(){
@@ -46,6 +63,7 @@ public class Frame extends JFrame{
 	}
 	public static void init(){
 		new Player(50,50,50,50);
+		clearEntities();
 		for(int i = 0; i < 10; i++){
 			new Enemy(rand.nextInt(WIDTH/2) + WIDTH/2, rand.nextInt(HEIGHT/2) + HEIGHT/2, 50 , 50);
 		}
@@ -54,23 +72,6 @@ public class Frame extends JFrame{
 			FRAME.setVisible(true);
 		}
 		initThreads();
-		new Thread(){
-			public void run(){
-				try{
-					byte interval = 15; 
-					long lastDraw=0;
-					while(true){
-						while(System.currentTimeMillis()-lastDraw<interval)
-							   Thread.sleep(1);
-							 
-							 lastDraw=System.currentTimeMillis();
-							 FRAME.repaint();
-					}
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-			}
-		}.start();
 	}
 	private static void clearEntities(){
 		Enemy.getEnemies().clear();
@@ -95,6 +96,9 @@ public class Frame extends JFrame{
 		}
 		if(!PROLAUNCHER.isAlive()){
 			PROLAUNCHER.start();
+		}
+		if(!FRAMELIMITER.isAlive()){
+			FRAMELIMITER.start();
 		}
 		if(!FPSUPDATER.isAlive()){
 			FPSUPDATER.start();
