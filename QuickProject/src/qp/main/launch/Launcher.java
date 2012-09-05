@@ -28,7 +28,7 @@ public class Launcher extends JFrame{
 	public static void main(String[] args){
 		init();
 	}
-	private static void init(){
+	public static void init(){
 		launcher = new Launcher();
 		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER,150,40));

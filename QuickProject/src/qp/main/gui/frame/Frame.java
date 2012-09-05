@@ -19,7 +19,7 @@ import qp.main.threads.PlayerMovement;
 import qp.main.threads.ProjectileLauncher;
 
 public class Frame extends JFrame{
-	static Frame FRAME;
+	public static Frame FRAME;
 	public static short WIDTH = 800;
 	public static short HEIGHT = 600;
 	public static int fps;
@@ -48,7 +48,10 @@ public class Frame extends JFrame{
 		for(int i = 0; i < 10; i++){
 			new Enemy(rand.nextInt(WIDTH/2) + WIDTH/2, rand.nextInt(HEIGHT/2) + HEIGHT/2, 50 , 50);
 		}
-		FRAME = new Frame();
+		if(FRAME==null){
+		FRAME = new Frame();}else{
+			FRAME.setVisible(true);
+		}
 		initThreads();
 		new Thread(new FPSUpdater()).start();
 		new Thread(){

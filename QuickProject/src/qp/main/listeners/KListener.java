@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import qp.main.gui.frame.Frame;
+import qp.main.launch.Launcher;
 
 public class KListener implements KeyListener{
 	public static boolean[] keys = new boolean[65536];
@@ -20,6 +21,9 @@ public class KListener implements KeyListener{
 			}else{
 				Frame.debug = false;
 			}
+		}if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			Frame.FRAME.dispose();
+			Launcher.init();
 		}
 	}
 
