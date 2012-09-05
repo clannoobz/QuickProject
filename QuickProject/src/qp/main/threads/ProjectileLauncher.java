@@ -25,7 +25,7 @@ public class ProjectileLauncher implements Runnable{
 				}else if(KListener.keys[KeyEvent.VK_RIGHT]){
 					new Projectile(Player.x + Player.width/2 - maj/2,Player.y + Player.height/2 - min/2,maj,min,speed,rand.nextDouble()/recoilReduction);
 				}
-				Thread.sleep(200);
+				Thread.sleep(100);
 			}
 		}catch(Exception e){
 			e.printStackTrace();

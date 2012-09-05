@@ -20,7 +20,8 @@ public class ProjectileMovement implements Runnable{
 				}
 				try{
 					if(!Enemy.getEnemies().isEmpty()){
-					for(Enemy e: (ArrayList<Enemy>) Enemy.getEnemies().clone()){
+					ArrayList<Enemy> clone = (ArrayList<Enemy>) Enemy.getEnemies().clone();
+					for(Enemy e: clone){
 						if(e.intersects(p.x,p.y,p.width,p.height)){
 							e.remove();
 							p.remove();

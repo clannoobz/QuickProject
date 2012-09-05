@@ -11,7 +11,8 @@ public class PlayerIntersect implements Runnable{
 		try{
 			while(true){
 				if(!Enemy.getEnemies().isEmpty()){
-					for(Enemy e: (ArrayList<Enemy>) Enemy.getEnemies().clone())
+					ArrayList<Enemy> clone = (ArrayList<Enemy>) Enemy.getEnemies().clone();
+					for(Enemy e: clone)
 						if(e!=null)
 						if (Player.getPlayer().intersects(e.x, e.y, e.width, e.height)){
 							Frame.lost = true;
