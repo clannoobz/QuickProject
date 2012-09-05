@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import qp.main.threads.EnemyMovement;
 
-public class Enemy extends Rectangle{
+public class Enemy extends Entity{
 	public double x,y;
 	public int width,height;
 	public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();

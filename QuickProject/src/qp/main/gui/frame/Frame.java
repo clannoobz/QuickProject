@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import qp.main.entity.Enemy;
 import qp.main.entity.Player;
@@ -27,6 +28,7 @@ public class Frame extends JFrame{
 	static Thread PLAYERINTERSECT = new Thread(new PlayerIntersect());
 	static Thread PROLAUNCHER = new Thread(new ProjectileLauncher());
 	static Thread PLAYERMOVEMENT = new Thread(new PlayerMovement());
+	static JPanel panel = new JPanel();
 	String TITLE = "Woo! Random!";
 	public Frame(){
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -95,7 +97,7 @@ public class Frame extends JFrame{
 		img = createImage(WIDTH,HEIGHT);
 		dbimg = img.getGraphics();
 		paintComponent(dbimg);
-		g.drawImage(img, 0, 0, this);
+		g.drawImage(img, -50, -50, this);
 	}
 	private void paintComponent(Graphics g){
 		if(!lost){

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import qp.main.threads.ProjectileMovement;
 
-public class Projectile {
+public class Projectile extends Entity{
 	public double x, y;
 	public int width;
 	public int height;
@@ -31,5 +31,10 @@ public class Projectile {
 	public void remove(){
 		exists = false;
 		projectiles.remove(this);
+	}
+	@Override
+	void move(double dx, double dy) {
+		this.x += dx;
+		this.y += dy;
 	}
 }

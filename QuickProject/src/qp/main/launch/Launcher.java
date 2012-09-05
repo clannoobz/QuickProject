@@ -57,7 +57,6 @@ public class Launcher extends JFrame{
 				JOptionPane.showMessageDialog(launcher, "This is a WIP. Use WASD to move and the arrows to shoot.","Instructions",JOptionPane.PLAIN_MESSAGE);
 				
 			}
-			
 		});
 		exit_button.addActionListener(new ActionListener(){
 			@Override
