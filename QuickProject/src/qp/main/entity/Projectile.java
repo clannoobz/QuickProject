@@ -30,6 +30,11 @@ public class Projectile extends Entity{
 	}
 	public void remove(){
 		exists = false;
+		try{
+			Thread.sleep(10);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		projectiles.remove(this);
 	}
 	@Override
