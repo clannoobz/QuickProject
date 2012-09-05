@@ -13,6 +13,13 @@ public class KListener implements KeyListener{
 		keys[e.getKeyCode()] = true;
 		if(e.getKeyCode() == KeyEvent.VK_R){
 			Frame.restart();
+		}else
+		if(e.getKeyCode() == KeyEvent.VK_F1){
+			if(!Frame.debug){
+				Frame.debug = true;
+			}else{
+				Frame.debug = false;
+			}
 		}
 	}
 

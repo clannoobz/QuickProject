@@ -26,6 +26,7 @@ public class Frame extends JFrame{
 	public static String bufferedfps = "Please wait...";
 	private static Image img;
 	private static Graphics dbimg;
+	public static boolean debug = false;
 	static Random rand = new Random();
 	public static boolean lost = false;
 	static Thread PLAYERINTERSECT = new Thread(new PlayerIntersect());
@@ -136,8 +137,10 @@ public class Frame extends JFrame{
 			g.setColor(Color.WHITE);
 			g.drawString("LOSER...Press R to restart", 50, 50);
 		}
-		//FPS
+		//Debug
+		if(debug){
 		g.setColor(Color.BLACK);
 		g.drawString("FPS: " + bufferedfps, WIDTH-120, HEIGHT-10);
+		}
 	}
 }
