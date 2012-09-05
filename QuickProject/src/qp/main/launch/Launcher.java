@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import qp.main.gui.frame.Frame;
@@ -14,7 +15,7 @@ import qp.main.launch.gui.buttons.LauncherButton;
 public class Launcher extends JFrame{
 	private static Launcher launcher;
 	private static LauncherButton start_button = new LauncherButton("Start"); //0
-	private static LauncherButton options_button = new LauncherButton("Options"); //1
+	private static LauncherButton instructions_button = new LauncherButton("Instructions"); //1
 	private static LauncherButton exit_button = new LauncherButton("Exit"); //2
 	public Launcher(){
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -34,7 +35,7 @@ public class Launcher extends JFrame{
 		JLabel label = new JLabel("Quick Test Project");
 		panel.add(label);
 		panel.add(start_button);
-		panel.add(options_button);
+		panel.add(instructions_button);
 		panel.add(exit_button);
 		launcher.add(panel);
 		addActionListeners();
@@ -49,11 +50,12 @@ public class Launcher extends JFrame{
 			}
 			
 		});
-		options_button.addActionListener(new ActionListener(){
+		instructions_button.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				options_button.setText("lolno :P");
+				JOptionPane.showMessageDialog(launcher, "This is a WIP. Use WASD to move and the arrows to shoot.","Instructions",JOptionPane.PLAIN_MESSAGE);
+				
 			}
 			
 		});
