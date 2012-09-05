@@ -29,8 +29,8 @@ public class Projectile extends Entity{
 		return projectiles;
 	}
 	public void remove(){
-		projectiles.remove(this);
 		exists = false;
+		projectiles.remove(this);
 	}
 	@Override
 	void move(double dx, double dy) {

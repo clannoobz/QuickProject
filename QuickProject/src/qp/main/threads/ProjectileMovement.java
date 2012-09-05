@@ -16,7 +16,7 @@ public class ProjectileMovement implements Runnable{
 	public void run(){
 		try{
 			while(p.exists){
-				if(!(p.x - p.width > 0 && p.x< Frame.WIDTH && p.y + p.height < Frame.HEIGHT && p.y > 0 )){
+				if(!(p.x + p.width > 0 && p.x< Frame.WIDTH && p.y + p.height < Frame.HEIGHT && p.y > 0 )){
 					p.remove();
 					p.exists = false;
 				}

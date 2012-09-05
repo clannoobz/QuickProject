@@ -152,7 +152,7 @@ public class Frame extends JFrame{
 		//Debug
 		if(debug){
 		g.setColor(Color.BLACK);
-		g.drawString("FPS: " + bufferedfps, WIDTH-120, HEIGHT-10);
+		g.drawString("FPS: " + bufferedfps + " Projectiles: " + Projectile.getProjectiles().size(), 10, HEIGHT-10);
 		}
 	}
 }
