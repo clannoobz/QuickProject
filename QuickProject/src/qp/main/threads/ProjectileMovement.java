@@ -1,6 +1,7 @@
 package qp.main.threads;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 import qp.main.entity.Enemy;
 import qp.main.entity.Projectile;
@@ -20,8 +21,7 @@ public class ProjectileMovement implements Runnable{
 				}
 				try{
 					if(!Enemy.getEnemies().isEmpty()){
-					ArrayList<Enemy> clone = (ArrayList<Enemy>) Enemy.getEnemies().clone();
-					for(Enemy e: clone){
+					for(Enemy e: (ArrayList<Enemy>) Enemy.getEnemies().clone()){
 						if(e.intersects(p.x,p.y,p.width,p.height)){
 							e.remove();
 							p.remove();
@@ -29,6 +29,8 @@ public class ProjectileMovement implements Runnable{
 					}
 					}
 				}catch(Exception e){
+					if (e instanceof NullPointerException || e instanceof ConcurrentModificationException)
+						break;
 					e.printStackTrace();
 				}
 				Thread.sleep(2);

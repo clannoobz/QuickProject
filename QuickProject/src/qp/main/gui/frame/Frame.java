@@ -13,6 +13,7 @@ import qp.main.entity.Enemy;
 import qp.main.entity.Player;
 import qp.main.entity.Projectile;
 import qp.main.listeners.KListener;
+import qp.main.threads.FPSUpdater;
 import qp.main.threads.PlayerIntersect;
 import qp.main.threads.PlayerMovement;
 import qp.main.threads.ProjectileLauncher;
@@ -21,6 +22,8 @@ public class Frame extends JFrame{
 	static Frame FRAME;
 	public static short WIDTH = 800;
 	public static short HEIGHT = 600;
+	public static int fps;
+	public static String bufferedfps = "Please wait...";
 	private static Image img;
 	private static Graphics dbimg;
 	static Random rand = new Random();
@@ -46,6 +49,7 @@ public class Frame extends JFrame{
 		}
 		FRAME = new Frame();
 		initThreads();
+		new Thread(new FPSUpdater()).start();
 		new Thread(){
 			public void run(){
 				try{
@@ -98,6 +102,7 @@ public class Frame extends JFrame{
 		dbimg = img.getGraphics();
 		paintComponent(dbimg);
 		g.drawImage(img, 0, 0, this);
+		fps++;
 	}
 	private void paintComponent(Graphics g){
 		if(!lost){
@@ -131,5 +136,8 @@ public class Frame extends JFrame{
 			g.setColor(Color.WHITE);
 			g.drawString("LOSER...Press R to restart", 50, 50);
 		}
+		//FPS
+		g.setColor(Color.BLACK);
+		g.drawString("FPS: " + bufferedfps, WIDTH-120, HEIGHT-10);
 	}
 }
