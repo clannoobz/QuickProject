@@ -97,7 +97,7 @@ public class Frame extends JFrame{
 		img = createImage(WIDTH,HEIGHT);
 		dbimg = img.getGraphics();
 		paintComponent(dbimg);
-		g.drawImage(img, -50, -50, this);
+		g.drawImage(img, 0, 0, this);
 	}
 	private void paintComponent(Graphics g){
 		if(!lost){
