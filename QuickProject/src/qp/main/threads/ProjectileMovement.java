@@ -2,6 +2,7 @@ package qp.main.threads;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
+import java.util.NoSuchElementException;
 
 import qp.main.entity.Enemy;
 import qp.main.entity.Projectile;
@@ -23,13 +24,13 @@ public class ProjectileMovement implements Runnable{
 					if(!Enemy.getEnemies().isEmpty()){
 					for(Enemy e: (ArrayList<Enemy>) Enemy.getEnemies().clone()){
 						if(e.intersects(p.x,p.y,p.width,p.height)){
-							e.remove();
 							p.remove();
+							e.remove();
 						}
 					}
 					}
 				}catch(Exception e){
-					if (e instanceof NullPointerException || e instanceof ConcurrentModificationException)
+					if (e instanceof NullPointerException || e instanceof ConcurrentModificationException || e instanceof NoSuchElementException)
 						break;
 					e.printStackTrace();
 				}

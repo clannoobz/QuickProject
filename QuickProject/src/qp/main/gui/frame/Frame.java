@@ -75,11 +75,13 @@ public class Frame extends JFrame{
 	}
 	private static void clearEntities(){
 		Enemy.getEnemies().clear();
+		for(Projectile p: Projectile.getProjectiles()){
+			p.exists = false;
+		}
 		Projectile.getProjectiles().clear();
 	}
 	public static void restart(){
 		lost = false;
-		initThreads();
 		clearEntities();
 		new Player(50,50,50,50);
 		for(int i = 0; i < 10; i++){
