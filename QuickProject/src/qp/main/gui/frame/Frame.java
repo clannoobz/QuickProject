@@ -32,6 +32,7 @@ public class Frame extends JFrame{
 	static Thread PLAYERINTERSECT = new Thread(new PlayerIntersect());
 	static Thread PROLAUNCHER = new Thread(new ProjectileLauncher());
 	static Thread PLAYERMOVEMENT = new Thread(new PlayerMovement());
+	static Thread FPSUPDATER = new Thread(new FPSUpdater());
 	static JPanel panel = new JPanel();
 	String TITLE = "Woo! Random!";
 	public Frame(){
@@ -53,7 +54,6 @@ public class Frame extends JFrame{
 			FRAME.setVisible(true);
 		}
 		initThreads();
-		new Thread(new FPSUpdater()).start();
 		new Thread(){
 			public void run(){
 				try{
@@ -95,6 +95,9 @@ public class Frame extends JFrame{
 		}
 		if(!PROLAUNCHER.isAlive()){
 			PROLAUNCHER.start();
+		}
+		if(!FPSUPDATER.isAlive()){
+			FPSUPDATER.start();
 		}
 		}catch(Exception e)
 		{
