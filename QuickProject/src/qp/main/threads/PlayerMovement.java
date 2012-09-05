@@ -12,12 +12,16 @@ public class PlayerMovement implements Runnable{
 		try{
 			while(true){
 				if(KListener.keys[KeyEvent.VK_W]){
+					if(Player.y - speed > 0)
 					Player.move(0.0, -speed);
 				}if(KListener.keys[KeyEvent.VK_A]){
+					if(Player.x - speed > 0)
 					Player.move(-speed, 0.0);
 				}if(KListener.keys[KeyEvent.VK_S]){
+					if(Player.y + Player.height + speed < Frame.HEIGHT)
 					Player.move(0.0, speed);
 				}if(KListener.keys[KeyEvent.VK_D]){
+					if(Player.x + Player.width + speed < Frame.WIDTH)
 					Player.move(speed, 0.0);
 				}
 				Thread.sleep(2);
