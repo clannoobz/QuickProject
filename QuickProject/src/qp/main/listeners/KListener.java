@@ -11,7 +11,7 @@ public class KListener implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		keys[e.getKeyCode()] = true;
-		if(e.getKeyCode() == KeyEvent.VK_R && Frame.lost){
+		if(e.getKeyCode() == KeyEvent.VK_R){
 			Frame.restart();
 		}
 	}

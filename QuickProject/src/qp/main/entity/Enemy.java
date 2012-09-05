@@ -28,4 +28,7 @@ public class Enemy extends Rectangle{
 		x += dx;
 		y += dy;
 	}
+	public void remove(){
+		enemies.remove(this);
+	}
 }

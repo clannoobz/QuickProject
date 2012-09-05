@@ -10,18 +10,23 @@ import javax.swing.JFrame;
 
 import qp.main.entity.Enemy;
 import qp.main.entity.Player;
+import qp.main.entity.Projectile;
 import qp.main.listeners.KListener;
 import qp.main.threads.PlayerIntersect;
 import qp.main.threads.PlayerMovement;
+import qp.main.threads.ProjectileLauncher;
 
 public class Frame extends JFrame{
 	static Frame FRAME;
-	static short WIDTH = 800;
-	static short HEIGHT = 600;
+	public static short WIDTH = 800;
+	public static short HEIGHT = 600;
 	private static Image img;
 	private static Graphics dbimg;
 	static Random rand = new Random();
 	public static boolean lost = false;
+	static Thread PLAYERINTERSECT = new Thread(new PlayerIntersect());
+	static Thread PROLAUNCHER = new Thread(new ProjectileLauncher());
+	static Thread PLAYERMOVEMENT = new Thread(new PlayerMovement());
 	String TITLE = "Woo! Random!";
 	public Frame(){
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,8 +43,7 @@ public class Frame extends JFrame{
 			new Enemy(rand.nextInt(WIDTH/2) + WIDTH/2, rand.nextInt(HEIGHT/2) + HEIGHT/2, 50 , 50);
 		}
 		FRAME = new Frame();
-		new Thread(new PlayerMovement()).start();
-		new Thread(new PlayerIntersect()).start();
+		initThreads();
 		new Thread(){
 			public void run(){
 				try{
@@ -58,14 +62,33 @@ public class Frame extends JFrame{
 			}
 		}.start();
 	}
+	private static void clearEntities(){
+		Enemy.getEnemies().clear();
+		Projectile.getProjectiles().clear();
+	}
 	public static void restart(){
 		lost = false;
-		new Thread(new PlayerMovement()).start();
-		new Thread(new PlayerIntersect()).start();
-		Enemy.enemies.clear();
+		initThreads();
+		clearEntities();
 		new Player(50,50,50,50);
 		for(int i = 0; i < 10; i++){
 			new Enemy(rand.nextInt(WIDTH/2) + WIDTH/2, rand.nextInt(HEIGHT/2) + HEIGHT/2, 50 , 50);
+		}
+	}
+	private static void initThreads(){
+		try{
+		if(!PLAYERMOVEMENT.isAlive()){
+			PLAYERMOVEMENT.start();
+		}
+		if(!PLAYERINTERSECT.isAlive()){
+			PLAYERINTERSECT.start();
+		}
+		if(!PROLAUNCHER.isAlive()){
+			PROLAUNCHER.start();
+		}
+		}catch(Exception e)
+		{
+			e.printStackTrace();
 		}
 	}
 	public void paint(Graphics g){
@@ -87,7 +110,20 @@ public class Frame extends JFrame{
 				g.fillRect((int)e.x, (int)e.y, e.width, e.height);
 				g.setColor(Color.BLACK);
 				g.drawRect((int)e.x, (int)e.y, e.width, e.height);
-		}
+			}
+			//Projectiles
+			for(Projectile p: (ArrayList<Projectile>) Projectile.getProjectiles().clone()){
+				try{
+					if(p!=null){
+					g.setColor(Color.YELLOW);
+					g.fillRect((int)p.x, (int)p.y, p.width, p.height);
+					g.setColor(Color.BLACK);
+					g.drawRect((int)p.x, (int)p.y, p.width, p.height);
+					}
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
 		}else{
 			g.fillRect(0, 0, WIDTH, HEIGHT);
 			g.setColor(Color.WHITE);

@@ -10,7 +10,7 @@ public class PlayerMovement implements Runnable{
 	public void run(){
 		double speed = 1.5;
 		try{
-			while(!Frame.lost){
+			while(true){
 				if(KListener.keys[KeyEvent.VK_W]){
 					Player.move(0.0, -speed);
 				}if(KListener.keys[KeyEvent.VK_A]){
