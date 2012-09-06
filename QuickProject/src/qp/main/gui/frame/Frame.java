@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import qp.main.entity.Enemy;
 import qp.main.entity.Player;
 import qp.main.entity.Projectile;
+import qp.main.gui.ImageLoader;
 import qp.main.listeners.KListener;
 import qp.main.threads.FPSUpdater;
 import qp.main.threads.PlayerIntersect;
@@ -32,6 +33,7 @@ public class Frame extends JFrame{
 	static Thread PLAYERINTERSECT = new Thread(new PlayerIntersect());
 	static Thread PROLAUNCHER = new Thread(new ProjectileLauncher());
 	static Thread PLAYERMOVEMENT = new Thread(new PlayerMovement());
+	static Image PlayerImage = ImageLoader.getImageFrom("Images/awesomecharacter.png");
 	static Thread FPSUPDATER = new Thread(new FPSUpdater());
 	static Thread FRAMELIMITER = new Thread(){
 		public void run(){
@@ -120,10 +122,7 @@ public class Frame extends JFrame{
 	private void paintComponent(Graphics g){
 		if(!lost){
 			//Player
-			g.setColor(Color.GREEN);
-			g.fillRect((int)Player.x, (int)Player.y, Player.width, Player.height);
-			g.setColor(Color.BLACK);
-			g.drawRect((int)Player.x, (int)Player.y, Player.width, Player.height);
+			g.drawImage(PlayerImage,(int)Player.x, (int)Player.y, Player.width, Player.height,this);
 			//Enemies
 			try{
 			for(Enemy e: (ArrayList<Enemy>) Enemy.getEnemies().clone()){
