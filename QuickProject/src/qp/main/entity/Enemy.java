@@ -8,6 +8,7 @@ import qp.main.threads.EnemyMovement;
 public class Enemy extends Entity{
 	public double x,y;
 	public int width,height;
+	public boolean exists = true;
 	public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	public Enemy(double x, double y, int w, int h){
 		this.x = x;
@@ -29,6 +30,7 @@ public class Enemy extends Entity{
 		y += dy;
 	}
 	public void remove(){
+		exists = false;
 		enemies.remove(this);
 	}
 }
