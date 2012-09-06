@@ -16,14 +16,15 @@ public class ProjectileLauncher implements Runnable{
 	public void run(){
 		try{
 			while(true){
+				double recoil = rand.nextDouble()-0.5;
 				if(KListener.keys[KeyEvent.VK_UP]){
-					new Projectile(Player.x + Player.width/2 - min/2,Player.y + Player.height/2 - maj/2,min,maj,rand.nextDouble()/recoilReduction,-speed);
+					new Projectile(Player.x + Player.width/2 - min/2,Player.y + Player.height/2 - maj/2,min,maj,recoil/recoilReduction,-speed);
 				}else if(KListener.keys[KeyEvent.VK_DOWN]){
-					new Projectile(Player.x + Player.width/2 - min/2,Player.y + Player.height/2 - maj/2,min,maj,rand.nextDouble()/recoilReduction,speed);
+					new Projectile(Player.x + Player.width/2 - min/2,Player.y + Player.height/2 - maj/2,min,maj,recoil/recoilReduction,speed);
 				}else if(KListener.keys[KeyEvent.VK_LEFT]){
-					new Projectile(Player.x + Player.width/2 - maj/2,Player.y + Player.height/2 - min/2,maj,min,-speed,rand.nextDouble()/recoilReduction);
+					new Projectile(Player.x + Player.width/2 - maj/2,Player.y + Player.height/2 - min/2,maj,min,-speed,recoil/recoilReduction);
 				}else if(KListener.keys[KeyEvent.VK_RIGHT]){
-					new Projectile(Player.x + Player.width/2 - maj/2,Player.y + Player.height/2 - min/2,maj,min,speed,rand.nextDouble()/recoilReduction);
+					new Projectile(Player.x + Player.width/2 - maj/2,Player.y + Player.height/2 - min/2,maj,min,speed,recoil/recoilReduction);
 				}
 				Thread.sleep(100);
 			}
