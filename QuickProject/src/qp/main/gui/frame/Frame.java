@@ -125,11 +125,16 @@ public class Frame extends JFrame{
 			g.setColor(Color.BLACK);
 			g.drawRect((int)Player.x, (int)Player.y, Player.width, Player.height);
 			//Enemies
+			try{
 			for(Enemy e: (ArrayList<Enemy>) Enemy.getEnemies().clone()){
 				g.setColor(Color.RED);
 				g.fillRect((int)e.x, (int)e.y, e.width, e.height);
 				g.setColor(Color.BLACK);
 				g.drawRect((int)e.x, (int)e.y, e.width, e.height);
+			}
+			}catch(Exception e){
+				if(!(e instanceof NullPointerException))
+				e.printStackTrace();
 			}
 			//Projectiles
 			for(Projectile p: (ArrayList<Projectile>) Projectile.getProjectiles().clone()){
