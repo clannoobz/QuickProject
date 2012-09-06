@@ -34,6 +34,7 @@ public class Frame extends JFrame{
 	static Thread PROLAUNCHER = new Thread(new ProjectileLauncher());
 	static Thread PLAYERMOVEMENT = new Thread(new PlayerMovement());
 	static Image PlayerImage = ImageLoader.getImageFrom("awesomecharacter.png");
+	static Image BackgroundImage = ImageLoader.getImageFrom("background.png");
 	static Thread FPSUPDATER = new Thread(new FPSUpdater());
 	static Thread FRAMELIMITER = new Thread(){
 		public void run(){
@@ -121,6 +122,7 @@ public class Frame extends JFrame{
 	}
 	private void paintComponent(Graphics g){
 		if(!lost){
+			g.drawImage(BackgroundImage,0,0,WIDTH,HEIGHT,this);
 			//Player
 			if(PlayerImage != null){
 			g.drawImage(PlayerImage,(int)Player.x, (int)Player.y, Player.width, Player.height,this);
