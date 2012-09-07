@@ -35,6 +35,7 @@ public class Frame extends JFrame{
 	static Thread PLAYERMOVEMENT = new Thread(new PlayerMovement());
 	static Image PlayerImage = ImageLoader.getImageFrom("awesomecharacter.png");
 	static Image BackgroundImage = ImageLoader.getImageFrom("background.png");
+	static Image LoserImage = ImageLoader.getImageFrom("loser.png");
 	static Thread FPSUPDATER = new Thread(new FPSUpdater());
 	static Thread FRAMELIMITER = new Thread(){
 		public void run(){
@@ -155,14 +156,12 @@ public class Frame extends JFrame{
 				}
 			}
 		}else{
-			g.fillRect(0, 0, WIDTH, HEIGHT);
-			g.setColor(Color.WHITE);
-			g.drawString("LOSER...Press R to restart", 50, 50);
+		g.drawImage(LoserImage,0,0,WIDTH,HEIGHT,this);
 		}
 		//Debug
 		if(debug){
 		g.setColor(Color.BLACK);
-		g.drawString("FPS: " + bufferedfps + " Projectiles: " + Projectile.getProjectiles().size(), 10, HEIGHT-10);
+		g.drawString("FPS: " + bufferedfps + " Projectiles: " + Projectile.getProjectiles().size() + " Enemies: " + Enemy.getEnemies().size() , 10, HEIGHT-10);
 		}
 	}
 }
