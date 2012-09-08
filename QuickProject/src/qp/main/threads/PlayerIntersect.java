@@ -1,6 +1,7 @@
 package qp.main.threads;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.NoSuchElementException;
 
 import qp.main.entity.Enemy;
@@ -21,7 +22,7 @@ public class PlayerIntersect implements Runnable{
 				Thread.sleep(20);
 			}
 		}catch(Exception e){
-			if(!(e instanceof NoSuchElementException))
+			if(!(e instanceof NoSuchElementException || e instanceof ConcurrentModificationException))
 			e.printStackTrace();
 		}
 	}

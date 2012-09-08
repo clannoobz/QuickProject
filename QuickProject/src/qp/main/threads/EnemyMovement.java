@@ -1,6 +1,7 @@
 package qp.main.threads;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
@@ -38,7 +39,7 @@ public class EnemyMovement implements Runnable{
 					}
 				}
 				}catch(Exception e){
-					if(!(e instanceof NullPointerException || e instanceof NoSuchElementException))
+					if(!(e instanceof NullPointerException || e instanceof NoSuchElementException || e instanceof ConcurrentModificationException))
 					e.printStackTrace();
 				}
 				Thread.sleep(2);

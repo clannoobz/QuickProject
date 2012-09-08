@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Random;
 
 import javax.swing.JFrame;
@@ -35,12 +36,13 @@ public class Frame extends JFrame{
 	static Thread PLAYERMOVEMENT = new Thread(new PlayerMovement());
 	static Image PlayerImage = ImageLoader.getImageFrom("awesomecharacter.png");
 	static Image BackgroundImage = ImageLoader.getImageFrom("background.png");
+	static Image EnemyImage = ImageLoader.getImageFrom("enemy.png");
 	static Image LoserImage = ImageLoader.getImageFrom("loser.png");
 	static Thread FPSUPDATER = new Thread(new FPSUpdater());
 	static Thread FRAMELIMITER = new Thread(){
 		public void run(){
 			try{
-				byte interval = 15; 
+				byte interval = 10; 
 				long lastDraw=0;
 				while(true){
 					while(System.currentTimeMillis()-lastDraw<interval)
@@ -133,10 +135,7 @@ public class Frame extends JFrame{
 			//Enemies
 			try{
 			for(Enemy e: (ArrayList<Enemy>) Enemy.getEnemies().clone()){
-				g.setColor(Color.RED);
-				g.fillRect((int)e.x, (int)e.y, e.width, e.height);
-				g.setColor(Color.BLACK);
-				g.drawRect((int)e.x, (int)e.y, e.width, e.height);
+				g.drawImage(EnemyImage,(int)e.x, (int)e.y, e.width, e.height,this);
 			}
 			}catch(Exception e){
 				if(!(e instanceof NullPointerException))
@@ -152,6 +151,7 @@ public class Frame extends JFrame{
 					g.drawRect((int)p.x, (int)p.y, p.width, p.height);
 					}
 				}catch(Exception e){
+					if (!(e instanceof ConcurrentModificationException))
 					e.printStackTrace();
 				}
 			}

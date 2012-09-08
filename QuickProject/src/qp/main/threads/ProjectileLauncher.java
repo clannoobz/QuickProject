@@ -9,8 +9,8 @@ import qp.main.gui.frame.Frame;
 import qp.main.listeners.KListener;
 
 public class ProjectileLauncher implements Runnable{
-	double speed = 2.0;
-	double recoilReduction = 5.0;
+	double speed = 1.8;
+	double recoilReduction = 4.0;
 	Random rand = new Random();
 	int maj = 10, min = 5;
 	public void run(){
