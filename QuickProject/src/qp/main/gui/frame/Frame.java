@@ -80,6 +80,9 @@ public class Frame extends JFrame{
 		initThreads();
 	}
 	private static void clearEntities(){
+		for(Enemy e: Enemy.getEnemies()){
+			e.exists = false;
+		}
 		Enemy.getEnemies().clear();
 		for(Projectile p: Projectile.getProjectiles()){
 			p.exists = false;

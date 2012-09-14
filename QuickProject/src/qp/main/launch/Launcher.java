@@ -17,6 +17,7 @@ public class Launcher extends JFrame{
 	private static LauncherButton start_button = new LauncherButton("Start"); //0
 	private static LauncherButton instructions_button = new LauncherButton("Instructions"); //1
 	private static LauncherButton exit_button = new LauncherButton("Exit"); //2
+	private static boolean firstinit = false;
 	public Launcher(){
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(250,400);
@@ -38,7 +39,10 @@ public class Launcher extends JFrame{
 		panel.add(instructions_button);
 		panel.add(exit_button);
 		launcher.add(panel);
+		if(!firstinit){
 		addActionListeners();
+		firstinit = true;
+		}
 	}
 	private static void addActionListeners(){
 		start_button.addActionListener(new ActionListener(){
